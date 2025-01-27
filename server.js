@@ -11,7 +11,15 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  "*",
+  cors({
+    origin: "*",
+    credentials: true,
+    methods:["GET","POST","DELETE","PUT"]
+  })
+);
+
 
 app.use("/api/auth", authRoutes);
 app.use('/api/resource',resourseRoutes);
